@@ -1,14 +1,14 @@
-import { View, Text, StyleSheet, Pressable, Button } from 'react-native';
-import React, { useState } from 'react';
-import { MoodOptionType } from '../types';
-import { theme } from '../theme';
+import {View, Text, StyleSheet, Pressable, Button} from 'react-native';
+import React, {useState} from 'react';
+import {MoodOptionType} from '../types';
+import {theme} from '../theme';
 
 const moods: MoodOptionType[] = [
-  { emoji: '👨‍💻', description: 'studious' },
-  { emoji: '🥰', description: 'in love' },
-  { emoji: '😁', description: 'happy' },
-  { emoji: '😥', description: 'sad' },
-  { emoji: '😤', description: 'frustrated' },
+  {emoji: '😖', description: 'anxious'},
+  {emoji: '🥰', description: 'in love'},
+  {emoji: '😁', description: 'happy'},
+  {emoji: '😥', description: 'sad'},
+  {emoji: '😤', description: 'frustrated'},
 ];
 
 export const MoodPicker: React.FC = () => {
