@@ -1,14 +1,21 @@
-import { View, Text, StyleSheet, Pressable, Button } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  FlatList,
+} from 'react-native';
 import React, { useState } from 'react';
 import { MoodOptionType } from '../types';
 import { theme } from '../theme';
 
 const moods: MoodOptionType[] = [
-  { emoji: '😖', description: 'anxious' },
-  { emoji: '🥰', description: 'in love' },
-  { emoji: '😁', description: 'happy' },
-  { emoji: '😥', description: 'sad' },
-  { emoji: '😤', description: 'frustrated' },
+  { emoji: '😖', description: 'Anxious' },
+  { emoji: '🥰', description: 'In love' },
+  { emoji: '😁', description: 'Happy' },
+  { emoji: '😥', description: 'Sad' },
+  { emoji: '😤', description: 'Frustrated' },
 ];
 
 type MoodPickerProps = {
@@ -28,25 +35,32 @@ export const MoodPicker: React.FC<MoodPickerProps> = ({ handleSelectMood }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>How are you feeling?</Text>
-      <View style={styles.moods}>
-        {moods.map(currentMood => (
-          <View key={currentMood.emoji}>
+      <FlatList
+        style={styles.moods}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        data={moods}
+        keyExtractor={item => item.emoji}
+        renderItem={({ item }) => (
+          <View key={item.emoji}>
             <Pressable
               style={[
                 styles.moodItem,
-                currentMood == selectedMood ? styles.selectedMood : undefined,
+                item == selectedMood ? styles.selectedMood : undefined,
               ]}
               onPress={() => {
-                setSelectedMood(currentMood);
+                setSelectedMood(item);
               }}>
-              <Text key={currentMood.emoji}>{currentMood.emoji}</Text>
+              <Text key={item.emoji} style={styles.moodDisplay}>
+                {item.emoji}
+              </Text>
             </Pressable>
-            {currentMood == selectedMood ? (
-              <Text style={styles.moodTitle}>{currentMood.description}</Text>
+            {item == selectedMood ? (
+              <Text style={styles.moodTitle}>{item.description}</Text>
             ) : undefined}
           </View>
-        ))}
-      </View>
+        )}
+      />
       <Pressable style={styles.button} onPress={handleSelect}>
         <Text style={styles.buttonText}>Record</Text>
       </Pressable>
@@ -56,9 +70,7 @@ export const MoodPicker: React.FC<MoodPickerProps> = ({ handleSelectMood }) => {
 
 const styles = StyleSheet.create({
   moods: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   moodItem: {
     height: 60,
@@ -66,6 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
+    marginHorizontal: 10,
   },
   selectedMood: {
     backgroundColor: theme.colorPurple,
@@ -100,5 +113,8 @@ const styles = StyleSheet.create({
     color: theme.colorWhite,
     textAlign: 'center',
     fontWeight: 'bold',
+  },
+  moodDisplay: {
+    fontSize: 40,
   },
 });

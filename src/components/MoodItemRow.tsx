@@ -35,10 +35,12 @@ const styles = StyleSheet.create({
   moodItem: {
     backgroundColor: 'white',
     marginBottom: 10,
+    marginHorizontal: 10,
     padding: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    borderRadius: 10,
   },
   moodDescription: {
     fontSize: 18,
