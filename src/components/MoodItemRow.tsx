@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   moodDate: {
     textAlign: 'center',
-    color: theme.colorWhite,
+    color: theme.colorLavender,
   },
   moodItem: {
     backgroundColor: 'white',

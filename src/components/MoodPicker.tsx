@@ -36,7 +36,6 @@ export const MoodPicker: React.FC<MoodPickerProps> = ({ handleSelectMood }) => {
     <View style={styles.container}>
       <Text style={styles.heading}>How are you feeling?</Text>
       <FlatList
-        style={styles.moods}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         data={moods}
@@ -69,9 +68,6 @@ export const MoodPicker: React.FC<MoodPickerProps> = ({ handleSelectMood }) => {
 };
 
 const styles = StyleSheet.create({
-  moods: {
-    paddingHorizontal: 10,
-  },
   moodItem: {
     height: 60,
     width: 60,
