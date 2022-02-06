@@ -1,25 +1,36 @@
-import {View, Text, StyleSheet, Pressable, Button} from 'react-native';
-import React, {useState} from 'react';
-import {MoodOptionType} from '../types';
-import {theme} from '../theme';
+import { View, Text, StyleSheet, Pressable, Button } from 'react-native';
+import React, { useState } from 'react';
+import { MoodOptionType } from '../types';
+import { theme } from '../theme';
 
 const moods: MoodOptionType[] = [
-  {emoji: '😖', description: 'anxious'},
-  {emoji: '🥰', description: 'in love'},
-  {emoji: '😁', description: 'happy'},
-  {emoji: '😥', description: 'sad'},
-  {emoji: '😤', description: 'frustrated'},
+  { emoji: '😖', description: 'anxious' },
+  { emoji: '🥰', description: 'in love' },
+  { emoji: '😁', description: 'happy' },
+  { emoji: '😥', description: 'sad' },
+  { emoji: '😤', description: 'frustrated' },
 ];
 
-export const MoodPicker: React.FC = () => {
+type MoodPickerProps = {
+  handleSelectMood: (mood: MoodOptionType) => void;
+};
+
+export const MoodPicker: React.FC<MoodPickerProps> = ({ handleSelectMood }) => {
   const [selectedMood, setSelectedMood] = useState<MoodOptionType>();
+
+  const handleSelect = () => {
+    if (selectedMood) {
+      handleSelectMood(selectedMood);
+      setSelectedMood(undefined);
+    }
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>How are you feeling?</Text>
       <View style={styles.moods}>
         {moods.map(currentMood => (
-          <View>
+          <View key={currentMood.emoji}>
             <Pressable
               style={[
                 styles.moodItem,
@@ -36,7 +47,7 @@ export const MoodPicker: React.FC = () => {
           </View>
         ))}
       </View>
-      <Pressable style={styles.button}>
+      <Pressable style={styles.button} onPress={handleSelect}>
         <Text style={styles.buttonText}>Record</Text>
       </Pressable>
     </View>
