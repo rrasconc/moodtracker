@@ -7,7 +7,7 @@ export const History: React.FC = () => {
   const appContext = useAppContext();
 
   return (
-    <View>
+    <View style={styles.container}>
       {appContext.moodList.map(item => (
         <MoodItemRow item={item} key={item.timestamp} />
       ))}
@@ -15,4 +15,8 @@ export const History: React.FC = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 10,
+  },
+});
