@@ -13,7 +13,9 @@ export const Home: React.FC = () => {
     <View style={styles.container}>
       <MoodPicker handleSelectMood={appContext.handleSelectMood} />
       <Text style={styles.text}>Latest mood</Text>
-      <MoodItemRow item={lastMood} key={lastMood.timestamp} />
+      {lastMood ? (
+        <MoodItemRow item={lastMood} key={lastMood.timestamp} />
+      ) : null}
     </View>
   );
 };
