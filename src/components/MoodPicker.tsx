@@ -37,6 +37,7 @@ export const MoodPicker: React.FC<MoodPickerProps> = ({ handleSelectMood }) => {
       <Text style={styles.heading}>How are you feeling?</Text>
       <FlatList
         horizontal={true}
+        contentContainerStyle={styles.moodListContainer}
         showsHorizontalScrollIndicator={false}
         data={moods}
         keyExtractor={item => item.emoji}
@@ -74,43 +75,47 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 10,
+    margin: 10,
   },
   selectedMood: {
     backgroundColor: theme.colorPurple,
   },
   moodTitle: {
     color: theme.colorPurple,
-    fontWeight: 'bold',
+    fontFamily: theme.fontFamilyBold,
     textAlign: 'center',
   },
   container: {
+    height: 250,
     backgroundColor: theme.colorWhite,
     margin: 10,
     borderRadius: 10,
     padding: 20,
+    justifyContent: 'space-between',
   },
   heading: {
     fontSize: 20,
-    fontWeight: 'bold',
     letterSpacing: 1,
     textAlign: 'center',
-    marginBottom: 20,
+    color: theme.colorPurple,
+    fontFamily: theme.fontFamilyBold,
   },
   button: {
     backgroundColor: theme.colorPurple,
     width: 150,
     borderRadius: 20,
-    marginTop: 20,
     alignSelf: 'center',
     padding: 10,
   },
   buttonText: {
     color: theme.colorWhite,
     textAlign: 'center',
-    fontWeight: 'bold',
+    fontFamily: theme.fontFamilyBold,
   },
   moodDisplay: {
     fontSize: 40,
+  },
+  moodListContainer: {
+    alignItems: 'center',
   },
 });

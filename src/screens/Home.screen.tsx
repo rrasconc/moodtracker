@@ -3,6 +3,7 @@ import React from 'react';
 import { MoodPicker } from '../components/MoodPicker';
 import { useAppContext } from '../App.provider';
 import { MoodItemRow } from '../components/MoodItemRow';
+import { theme } from '../theme';
 
 export const Home: React.FC = () => {
   const appContext = useAppContext();
@@ -27,8 +28,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 13,
-    fontWeight: 'bold',
-    letterSpacing: 1,
+    color: theme.colorPurple,
+    fontFamily: theme.fontFamilyBold,
     padding: 10,
   },
 });
